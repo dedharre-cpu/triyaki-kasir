@@ -341,7 +341,7 @@ applyAppName();loadSheetsUrl();refreshAll();renderCart();initAuth();
   updateConnection();
   const btn=document.getElementById('refreshAppButton');
   if(btn){
-    btn.addEventListener('click',function(){
+    btn.addEventListener('click',async function(){
       btn.disabled=true;
       const old=btn.textContent;
       btn.textContent='Menyegarkan...';
@@ -352,6 +352,7 @@ applyAppName();loadSheetsUrl();refreshAll();renderCart();initAuth();
         monthlyArchives=load('tri_monthly_archives',[]);
         refreshAll();
         renderCart();
+        if(window.fbForceSync)await window.fbForceSync();
         updateConnection();
         showToast('Data dan tampilan disegarkan');
       }catch(e){
